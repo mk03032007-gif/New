@@ -1,43 +1,41 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>AR Hiro Marker - Con Hươu 3D</title>
-  
-  <!-- Dùng CDN ổn định hỗ trợ camera -->
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
-  
-  <style>
-    body { margin: 0; overflow: hidden; }
-  </style>
-</head>
-<body>
-
-  <a-scene 
-    embedded 
-    vr-mode-ui="enabled: false"
-    arjs="sourceType: webcam; debugUIEnabled: false;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>WebAR Mô Hình Hươu 3D - AR.js</title>
     
-    <a-assets>
-      <a-asset-item id="deerModel" src="deer.glb"></a-asset-item>
-    </a-assets>
+    <!-- Dùng thư viện CDN ổn định để tránh lỗi nạp camera -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
+</head>
+<body style="margin: 0px; overflow: hidden;">
 
-    <a-entity type="ambient" light="intensity: 1.5;"></a-entity>
-    <a-entity type="directional" light="intensity: 1;" position="1 4 2"></a-entity>
+    <a-scene embedded vr-mode-ui="enabled: false;" arjs="sourceType: webcam; debugUIEnabled: false;">
 
-    <a-marker preset="hiro">
-      <a-entity 
-        gltf-model="#deerModel" 
-        position="0 0 0" 
-        scale="0.15 0.15 0.15">
-      </a-entity>
-    </a-marker>
+        <a-assets>
+            <!-- Khai báo file hươu 3D (.glb) -->
+            <a-asset-item id="deer-model" src="deer.glb"></a-asset-item>
+        </a-assets>
 
-    <a-entity camera></a-entity>
+        <!-- Đèn chiếu sáng giúp con hươu không bị đen -->
+        <a-entity type="ambient" light="intensity: 1.5;"></a-entity>
+        <a-entity type="directional" light="intensity: 1;" position="1 4 2"></a-entity>
 
-  </a-scene>
+        <!-- Nhận diện mã Hiro -->
+        <a-marker preset="hiro">
+            <a-entity 
+                gltf-model="#deer-model"
+                position="0 0 0"
+                scale="0.1 0.1 0.1"
+                rotation="0 0 0">
+            </a-entity>
+        </a-marker>
+
+        <!-- Camera phải nằm NGOÀI a-marker nhưng NẰM TRONG a-scene -->
+        <a-entity camera></a-entity>
+
+    </a-scene>
 
 </body>
 </html>
