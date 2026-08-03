@@ -1,62 +1,62 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>WebAR - Hiro Marker</title>
+<meta charset="utf-8">
 
-    <!-- A-Frame -->
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
-    <!-- AR.js -->
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+}
+#text{
+    position:absolute;
+    top:10px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:22px;
+    z-index:999;
+}
+</style>
 
-    <style>
-        body{
-            margin:0;
-            overflow:hidden;
-            font-family:Arial;
-        }
-
-        #title{
-            position:absolute;
-            top:10px;
-            width:100%;
-            text-align:center;
-            color:white;
-            font-size:24px;
-            z-index:999;
-            text-shadow:2px 2px 5px black;
-        }
-    </style>
 </head>
 
 <body>
 
-<div id="title">
-    Đưa Hiro Marker trước webcam
+<div id="text">
+Đưa Hiro Marker trước camera
 </div>
 
 <a-scene
-    embedded
-    vr-mode-ui="enabled:false"
-    renderer="logarithmicDepthBuffer: true;"
-    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled:false;">
+embedded
+renderer="antialias: true;"
+vr-mode-ui="enabled:false"
+arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled:false;">
 
-    <!-- Marker Hiro -->
-    <a-marker preset="hiro">
+<a-assets>
 
-        <!-- Mô hình con hươu -->
-        <a-entity
-            gltf-model="assets/realistic_deer_3d_model_2.0_demo_free_download.glb"
-            position="0 0 0"
-            rotation="-90 0 0"
-            scale="0.25 0.25 0.25">
-        </a-entity>
+<a-asset-item
+id="deer"
+src="./assets/realistic_deer_3d_model_2.0_demo_free_download.glb">
+</a-asset-item>
 
-    </a-marker>
+</a-assets>
 
-    <!-- Camera -->
-    <a-entity camera></a-entity>
+<a-marker preset="hiro">
+
+<a-entity
+gltf-model="#deer"
+position="0 0 0"
+rotation="-90 0 0"
+scale="0.02 0.02 0.02">
+</a-entity>
+
+</a-marker>
+
+<a-entity camera></a-entity>
 
 </a-scene>
 
