@@ -1,62 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
+
 <head>
-<meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAR Hươu 3D</title>
 
-<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 
-<style>
-body{
-    margin:0;
-    overflow:hidden;
-}
-#text{
-    position:absolute;
-    top:10px;
-    width:100%;
-    text-align:center;
-    color:white;
-    font-size:22px;
-    z-index:999;
-}
-</style>
+    <!-- AR.js -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #title {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            z-index: 999;
+            text-shadow: 2px 2px 5px black;
+        }
+    </style>
 
 </head>
 
 <body>
 
-<div id="text">
-Đưa Hiro Marker trước camera
+<div id="title">
+Quét Hiro Marker để xem hươu 3D
 </div>
 
 <a-scene
-embedded
-renderer="antialias: true;"
-vr-mode-ui="enabled:false"
-arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled:false;">
+    embedded
+    arjs="sourceType: webcam; debugUIEnabled: true;"
+    vr-mode-ui="enabled: false">
 
-<a-assets>
+    <a-assets>
 
-<a-asset-item
-id="deer"
-src="./assets/realistic_deer_3d_model_2.0_demo_free_download.glb">
-</a-asset-item>
+        <a-asset-item
+            id="deer"
+            src="./assets/realistic_deer_3d_model_2.0_demo_free_download.glb">
+        </a-asset-item>
 
-</a-assets>
+    </a-assets>
 
-<a-marker preset="hiro">
+    <a-marker preset="hiro">
 
-<a-entity
-gltf-model="#deer"
-position="0 0 0"
-rotation="-90 0 0"
-scale="0.02 0.02 0.02">
-</a-entity>
+        <a-entity
+            gltf-model="#deer"
+            position="0 0 0"
+            rotation="-90 0 0"
+            scale="0.05 0.05 0.05">
+        </a-entity>
 
-</a-marker>
+    </a-marker>
 
-<a-entity camera></a-entity>
+    <a-entity camera></a-entity>
 
 </a-scene>
 
